@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { MediaItemComponent } from './media-item.component';
@@ -9,10 +10,14 @@ import { FavoriteDirective } from './favorite.directive';
 import { CategoryListPipe } from './category-list.pipe';
 import { MediaItemFormComponent } from './media-item-form.component';
 
+import { MediaItemService } from './media-item.service';
+import { lookupListsToken, lookupLists } from './providers';
+
 @NgModule({
   imports: [
     BrowserModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   declarations: [
     AppComponent,
@@ -21,6 +26,10 @@ import { MediaItemFormComponent } from './media-item-form.component';
     FavoriteDirective,
     CategoryListPipe,
     MediaItemFormComponent
+  ],
+  providers: [
+    MediaItemService,
+    {provide: lookupListsToken, useValue: lookupLists }
   ],
   bootstrap: [
     AppComponent
